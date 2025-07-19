@@ -1,69 +1,96 @@
-# React + TypeScript + Vite
+# Commonplace book
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## SCSS
 
-Currently, two official plugins are available:
+- import `main.scss` file instead of `main.css`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```tsx
+// `main.tsx`
+import "../styles/main.scss";
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- import `_variables.scss` in each scss file that uses custom properties
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```scss
+// `_App.scss`
+@import "variables";
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
+main {
+  width: 100%;
+  flex: 1;
+  @include flex-col;
+}
+```
+
+## Jest
+
+### Setting up
+
+- `npm install jest --save-dev`
+
+- `npm install @testing-library/react --save-dev`
+
+- `npm install ts-jest @types/jest --save-dev`
+
+- In the `package.json`, add `"test": "jest"` to the script
+
+- In `src`, create a folder named `__tests__` and add `<component name>.test.tsx` in it.
+
+- `npm install ts-node @testing-library/jest-dom --save-dev`
+
+- `npm install jest-environment-jsdom`
+
+- In the root directory, create `jest.config.ts` and add the following to it:
+
+```ts
+// `jest.config.ts`
+
+export default {
+  preset: "ts-jest",
+  testEnvironment: "jsdom",
+  globals: {
+    "ts-jest": {
+      tsconfig: "<rootDir>/tsconfig.json",
     },
   },
-])
+  setupFilesAfterEnv: ["<rootDir>/setupTests.ts"],
+  transform: {
+    "^.+\\.(ts|tsx)$": "ts-jest",
+    "^.+\\.(js|jsx)$": "babel-jest",
+  },
+  moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
+};
+```
+
+- In the root directory, create `setupTests.ts` and add the following to it:
+
+```ts
+// `setupTests.ts`
+
+import "@testing-library/jest-dom";
+```
+
+- In `tsconfig.json`, add the following:
+
+```json
+// `tsconfig.json`
+
+  "compilerOptions": {
+    "types": ["jest", "@testing-library/jest-dom"],
+    "jsx": "react-jsx"
+  }
+```
+
+- Make sure the following lines are included in `tsconfig.app.json`:
+
+```json
+// `tsconfig.app.json`
+
+{
+  "compilerOptions": {
+    /* Bundler mode */
+    "esModuleInterop": true
+  },
+  "include": ["src", "setupTests.ts"]
+}
 ```

@@ -20,7 +20,7 @@ const Form = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} noValidate>
       <fieldset>
         <legend>Contact Information</legend>
         <label htmlFor="mail">Email Address</label>
@@ -28,8 +28,6 @@ const Form = () => {
           <input
             type="email"
             id="mail"
-            autoComplete="email"
-            placeholder="Your email address..."
             {...register("mail", {
               required: "Email is required",
               pattern: {
@@ -37,6 +35,8 @@ const Form = () => {
                 message: "Please provide a valid email address",
               },
             })}
+            autoComplete="email"
+            placeholder="Your email address..."
           ></input>
           {errors.mail && <p>{errors.mail.message}</p>}
         </div>

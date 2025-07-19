@@ -34,8 +34,8 @@ function App() {
       <footer>
         <ul>
           {data.map((social) => (
-            <li>
-              <a key={social.id} href="#">
+            <li key={social.id}>
+              <a href="#">
                 <img
                   src={`${basePath}/${social.image}`}
                   alt={`${social.name} icon`}
