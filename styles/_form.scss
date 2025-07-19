@@ -1,0 +1,94 @@
+@import "variables";
+
+form {
+  width: 100%;
+  padding: 0 10px;
+
+  fieldset {
+    @include flex-col;
+    border: none;
+    gap: 8px;
+
+    legend {
+      display: none;
+    }
+
+    label {
+      display: none;
+    }
+
+    input,
+    button {
+      @include text-preset-4-semi-bold;
+      font-family: $font-primary;
+      width: 100%;
+      height: 40px;
+      border-radius: 28px;
+      padding: 24px;
+      @include flex-row;
+    }
+
+    .input-container {
+      width: 100%;
+      @include flex-col;
+      gap: 8px;
+
+      input {
+        color: $blue-950;
+        border: 1px solid $blue-200;
+
+        &::placeholder {
+          color: $blue-200;
+        }
+
+        &:invalid {
+          border-color: $red;
+        }
+      }
+
+      p {
+        @include text-preset-5;
+        color: $red;
+      }
+    }
+
+    button {
+      border: none;
+      color: $white;
+      background-color: $blue-500;
+
+      &:hover {
+        opacity: 75%;
+      }
+    }
+  }
+}
+
+@media (min-width: 641px) {
+  form {
+    fieldset {
+      @include flex-row;
+      align-items: start;
+
+      input,
+      button {
+        @include text-preset-3-semi-bold;
+        height: 56px;
+      }
+
+      .input-container {
+        flex: 2;
+
+        p {
+          @include text-preset-4-italic;
+          align-self: start;
+          padding: 0 32px;
+        }
+      }
+
+      button {
+        flex: 1;
+      }
+    }
+  }
+}

@@ -1,0 +1,114 @@
+@font-face {
+  font-family: "Libre Flanklin";
+  src: url("../src/assets/fonts/LibreFranklin-VariableFont_wght.ttf")
+    format("truetype");
+}
+
+@font-face {
+  font-family: "Libre Flanklin Italic";
+  src: url("../src/assets/fonts/LibreFranklin-Italic-VariableFont_wght.ttf")
+    format("truetype");
+}
+
+$font-primary: "Libre Flanklin";
+$font-italic: "Libre Flanklin Italic";
+
+@mixin text-preset-1-bold {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 125%;
+  letter-spacing: 0;
+}
+
+@mixin text-preset-1-light {
+  font-size: 48px;
+  font-weight: 300;
+  line-height: 125%;
+  letter-spacing: 0;
+}
+
+@mixin text-preset-2-bold {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 125%;
+  letter-spacing: 0;
+}
+
+@mixin text-preset-2-light {
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 125%;
+  letter-spacing: 0;
+}
+
+@mixin text-preset-3-semi-bold {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 125%;
+  letter-spacing: 0;
+}
+
+@mixin text-preset-3-light {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 125%;
+  letter-spacing: 0;
+}
+
+@mixin text-preset-4-semi-bold {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 125%;
+  letter-spacing: 0;
+}
+
+@mixin text-preset-4-light {
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 125%;
+  letter-spacing: 0;
+}
+
+@mixin text-preset-4-italic {
+  font-family: $font-italic;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 125%;
+  letter-spacing: 0;
+}
+
+@mixin text-preset-5 {
+  font-family: $font-italic;
+  font-size: 10px;
+  font-weight: 300;
+  line-height: 125%;
+  letter-spacing: 0;
+}
+
+$white: #ffffff;
+$black: #000000;
+
+$blue-950: #15202a;
+$blue-500: #4c7bf3;
+$blue-200: #c2d3ff;
+
+$gray-400: #969696;
+$gray-100: #ebebeb;
+$gray-50: #fbfcff;
+
+$red: #ff5466;
+$green: #2ecc71;
+
+@mixin flex-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
